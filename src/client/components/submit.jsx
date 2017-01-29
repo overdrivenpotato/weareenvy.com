@@ -34,6 +34,12 @@ class Submit extends React.Component {
         })
     }
 
+    infoChange = event => {
+        this.setState({
+            info: event.target.value
+        })
+    }
+
     linkValid = () => (
         /(https?:\/\/)?soundcloud.com\/[^\/]+\/[^\/]+/.test(this.state.link)
     )
@@ -109,6 +115,8 @@ class Submit extends React.Component {
                 <div className={b('heading')}>Additional info</div>
                 <textarea
                     className={b('field', {type: 'info'})}
+                    value={this.state.info}
+                    onChange={this.infoChange}
                     placeholder="Any additional info you may have" />
 
                 <input
