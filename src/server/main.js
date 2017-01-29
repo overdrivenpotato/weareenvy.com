@@ -4,9 +4,20 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import nodemailer from 'nodemailer'
 
-const TO = '[redacted]'
-const FROM = '[redacted]'
-const PASS = '[redacted]'
+const TO = process.env.TARGET
+const FROM = process.env.FROM
+const PASS = process.env.PASS
+
+if(!TO || !FROM || !PASS) {
+    console.error('The following environment variables are required:')
+    console.error('    TO   - Target to send emails to')
+    console.error('    FROM - The gmail account to send emails from')
+    console.error('    PASS - The password for the \'FROM\' account')
+    console.error(`Example:`)
+    console.error(`    TO=target@gmail.com FROM=user@gmail.com PASS=userpass ${process.argv.join(' ')}`)
+
+    process.exit(1)
+}
 
 const transporter = nodemailer.createTransport({
     service: 'Gmail',

@@ -7,6 +7,7 @@ const CLIENT_SRC = './src/client'
 const SERVER_SRC = './src/server'
 const BUILD_DIR = './build'
 
+// Config common to the server and client
 const commonConfig = {
     module: {
         rules: [
@@ -39,6 +40,14 @@ const serverConfig = Object.assign({}, commonConfig, {
     },
     context: path.resolve(SERVER_SRC),
     entry: './main.js',
+    plugins: [
+        ...commonConfig.plugins,
+        new DefinePlugin({
+            'process.env.TO': process.env.TO,
+            'process.env.FROM': process.env.FROM,
+            'process.env.PASS': process.env.PASS,
+        }),
+    ],
     output: {
         path: path.join(BUILD_DIR, 'server'),
         filename: 'server.js',
