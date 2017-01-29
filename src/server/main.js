@@ -8,7 +8,7 @@ const TO = process.env.TO
 const FROM = process.env.FROM
 const PASS = process.env.PASS
 
-if(!TO || !FROM || !PASS) {
+if(!process.env.NODE_ENV == 'production' && !(TO && FROM && PASS)) {
     console.error('The following environment variables are required:')
     console.error('    TO   - Target to send emails to')
     console.error('    FROM - The gmail account to send emails from')
@@ -45,13 +45,15 @@ app.post('/signup', (req, res, next) => {
         `),
     }
 
-    transporter.sendMail(mailOptions, function(error, info) {
-        if(error) {
-            console.log(error)
-        } else {
-            console.log('Message sent: ' + info.response)
-        }
-    })
+    if(process.env.NODE_ENV == 'production') {
+        transporter.sendMail(mailOptions, function(error, info) {
+            if(error) {
+                console.log(error)
+            } else {
+                console.log('Message sent: ' + info.response)
+            }
+        })
+    }
 
     res.send(null)
 })
