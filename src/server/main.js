@@ -4,7 +4,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import nodemailer from 'nodemailer'
 
-const TO = process.env.TARGET
+const TO = process.env.TO
 const FROM = process.env.FROM
 const PASS = process.env.PASS
 

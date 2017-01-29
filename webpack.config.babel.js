@@ -40,14 +40,6 @@ const serverConfig = Object.assign({}, commonConfig, {
     },
     context: path.resolve(SERVER_SRC),
     entry: './main.js',
-    plugins: [
-        ...commonConfig.plugins,
-        new webpack.DefinePlugin({
-            'process.env.TO': process.env.TO,
-            'process.env.FROM': process.env.FROM,
-            'process.env.PASS': process.env.PASS,
-        }),
-    ],
     output: {
         path: path.join(BUILD_DIR, 'server'),
         filename: 'server.js',
