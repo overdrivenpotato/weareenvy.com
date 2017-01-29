@@ -1,3 +1,4 @@
+import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import autoprefixer from 'autoprefixer'
 import path from 'path'
@@ -20,9 +21,14 @@ const commonConfig = {
             },
         ]
     },
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+        })
+    ],
     resolve: {
         extensions: ['.js', '.jsx', '.styl'],
-    }
+    },
 }
 
 const serverConfig = Object.assign({}, commonConfig, {
@@ -41,12 +47,13 @@ const serverConfig = Object.assign({}, commonConfig, {
 
 const clientConfig = Object.assign({}, commonConfig, {
     context: path.resolve(CLIENT_SRC),
-    entry: './main.jsx',
+    entry: ['babel-polyfill', './main.jsx'],
     output: {
         path: path.join(BUILD_DIR, 'client'),
         filename: 'client.[hash].js',
     },
     plugins: [
+        ...commonConfig.plugins,
         new HtmlWebpackPlugin({
             template: path.resolve(CLIENT_SRC, './index.html'),
         }),

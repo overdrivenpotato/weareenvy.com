@@ -47,4 +47,4 @@ app.post('/signup', (req, res, next) => {
 
 app.use('/', express.static(path.join(__dirname, '../client')))
 
-app.listen(3000)
+app.listen(process.env.NODE_ENV === 'production' ? 80 : 3000)
