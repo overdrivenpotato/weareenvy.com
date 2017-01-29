@@ -1,0 +1,138 @@
+.submit
+    dark-color = #333
+    border-thickness = 1px
+
+    padding 0.5em
+    margin-top 1em
+
+    display flex
+    flex-direction column
+    align-items center
+
+    max-width 20em
+    width 100%
+
+    background-color black
+
+    font-size 2em
+
+    &__content
+        position relative
+        width 100%
+
+        display flex
+        flex-direction column
+        align-items center
+
+    &__screen
+        opacity 0
+        pointer-events none
+
+        position absolute
+        top 0
+        left 0
+
+        width 100%
+        height 100%
+
+        background-color black
+
+        display flex
+        align-items center
+        justify-content center
+
+        &--hidden
+            pointer-events initial
+            opacity 0.7
+
+        &--submitted
+            pointer-events initial
+            opacity 1
+
+        transition all 1s
+
+    &__title
+        font-size 1em
+        margin-bottom 1.5em
+
+    &__field
+        width 100%
+        outline none
+        border none
+
+        padding 0.7em 0.5em
+        margin-bottom 2.5em
+
+        box-sizing border-box
+
+        background-color transparent
+        color white
+        border-bottom border-thickness solid dark-color
+
+        font-size 0.5em
+
+        &:focus
+            border-color #ddd
+
+        &:hover
+            background-color #111
+
+        &::placeholder
+            color dark-color
+
+        &--type-info
+            min-height 5em
+            resize none
+
+        transition all 0.5s, background-color 0.2s
+
+    &__heading
+        color white
+        font-size 0.4em
+        width 100%
+
+        margin-bottom 0.3em
+
+        padding 0.1em
+        box-sizing border-box
+
+        &--recheck
+            color #f55
+
+    &__submit
+        cursor pointer
+
+        font-size 0.4em
+        outline none
+        border none
+
+        padding 1em
+        width 10em
+
+        background-color transparent
+        border border-thickness solid dark-color
+        color white
+
+        &:hover
+            background-color white
+            border-color white
+            color black
+
+        &:focus
+            border-color white
+
+        &:active
+            background-color #aaa
+            border-color #aaa
+
+        transition all 0.25s
+
+    @keyframes formfade
+        0%
+            opacity 0
+            transform translate3d(0, 20px, 0)
+        100%
+            opacity 1
+            transform translate3d(0, 0, 0)
+
+    animation formfade 1s
