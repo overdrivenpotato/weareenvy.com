@@ -1,5 +1,6 @@
 import React from 'react'
 import block from 'bem-cn'
+import Donation from './donation'
 
 const b = block('packages')
 
@@ -41,25 +42,6 @@ const options = [
     },
 ]
 
-const donations = (choice) => {
-    const lookup = options.find(opt => opt.name == choice)
-
-    if(!lookup) {
-        return <div className={b('donations', {hidden: true})}></div>
-    }
-
-    return <div className={b('donations')}>
-        <a className={b('donate-button')}
-                  target="_blank"
-                  href={lookup.link}>
-            Donate {lookup.price}
-        </a>
-        <span className={b('donate-message')}>
-            Toss us a friendly donation and we'll guarantee a listen!
-        </span>
-    </div>
-}
-
 const Packages = ({choice, choose}) => (
     <div className={b}>
         <div className={b('selector')}>
@@ -78,7 +60,7 @@ const Packages = ({choice, choose}) => (
                 ))
             }
         </div>
-        { donations(choice) }
+        <Donation info={options.find(opt => opt.name == choice)} />
     </div>
 )
 

@@ -1,6 +1,4 @@
 .packages
-    donate-color = #00b4ff
-
     width 100%
     max-width 40em
     display flex
@@ -12,53 +10,6 @@
         flex-wrap wrap
         justify-content center
         align-items space-between
-
-    &__donate-message
-        font-size 0.7em
-        padding 1em
-        color donate-color
-        text-align center
-
-    &__donations
-        height 3.5em
-        padding 1em
-
-        display flex
-        align-items center
-        justify-content space-around
-        flex-wrap wrap
-
-        @keyframes donate
-            0%
-                opacity 0
-            100%
-                opacity 1
-
-        animation donate 0.5s
-
-        &--hidden
-            animation none
-
-    &__donate-button
-        color donate-color
-        display flex
-        align-items center
-        justify-content center
-
-        cursor pointer
-        text-decoration none
-
-        width 10em
-        height 3.5em
-
-        border 1px solid donate-color
-        box-sizing border-box
-
-        &:hover
-            background-color donate-color
-            color black
-
-        transition all 0.5s
 
     &__option
         cursor pointer
