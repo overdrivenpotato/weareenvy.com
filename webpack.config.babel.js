@@ -61,4 +61,4 @@ const clientConfig = Object.assign({}, commonConfig, {
     ],
 })
 
-module.exports = [serverConfig, clientConfig]
+export default [serverConfig, clientConfig]
