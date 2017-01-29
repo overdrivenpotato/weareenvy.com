@@ -42,7 +42,7 @@ const serverConfig = Object.assign({}, commonConfig, {
     entry: './main.js',
     plugins: [
         ...commonConfig.plugins,
-        new DefinePlugin({
+        new webpack.DefinePlugin({
             'process.env.TO': process.env.TO,
             'process.env.FROM': process.env.FROM,
             'process.env.PASS': process.env.PASS,
