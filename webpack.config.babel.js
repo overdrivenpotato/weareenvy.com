@@ -52,6 +52,7 @@ const clientConfig = Object.assign({}, commonConfig, {
     output: {
         path: path.join(BUILD_DIR, 'client'),
         filename: 'client.[hash].js',
+        publicPath: '/_/',
     },
     plugins: [
         ...commonConfig.plugins,

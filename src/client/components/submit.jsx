@@ -64,7 +64,7 @@ class Submit extends React.Component {
             info: this.state.info,
         }
 
-        fetch('/signup', {
+        fetch('/api/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

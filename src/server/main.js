@@ -8,7 +8,7 @@ const TO = process.env.TO
 const FROM = process.env.FROM
 const PASS = process.env.PASS
 
-if(!process.env.NODE_ENV == 'production' && !(TO && FROM && PASS)) {
+if(!(TO && FROM && PASS)) {
     console.error('The following environment variables are required:')
     console.error('    TO   - Target to send emails to')
     console.error('    FROM - The gmail account to send emails from')
@@ -31,7 +31,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
-app.post('/signup', (req, res, next) => {
+app.post('/api/signup', (req, res, next) => {
     const mailOptions = {
         from: FROM,
         to: TO,
@@ -58,6 +58,7 @@ app.post('/signup', (req, res, next) => {
     res.send(null)
 })
 
-app.use('/', express.static(path.join(__dirname, '../client')))
+app.use('/_/', express.static(path.join(__dirname, 'build/client')))
+app.use('/', express.static(path.join(__dirname, 'build/client/index.html')))
 
-app.listen(process.env.NODE_ENV === 'production' ? 80 : 3000)
+app.listen(3000)
