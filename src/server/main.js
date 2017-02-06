@@ -58,7 +58,7 @@ app.post('/api/signup', (req, res, next) => {
     res.send(null)
 })
 
-app.use('/_/', express.static(path.join(__dirname, 'build/client')))
-app.use('/', express.static(path.join(__dirname, 'build/client/index.html')))
+app.use('/_/', express.static(path.join(__dirname, '../client')))
+app.get('/', (_, res) => res.sendFile(path.join(__dirname, '../client/index.html')))
 
 app.listen(3000)
